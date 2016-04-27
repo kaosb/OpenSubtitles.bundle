@@ -121,7 +121,7 @@ def fetchSubtitles(proxy, token, part, imdbID=None, filename=None, season=None, 
       except:
         subtitleResponse = False
 
-    if subtitleResponse == False and imdbID: # Let's try the imdbID, if we have one
+    if (subtitleResponse == False or not subtitleResponse) and imdbID: # Let's try the imdbID, if we have one
 
       Log('Found nothing via hash, trying search with imdbID: %s' % (imdbID))
       try:
@@ -130,7 +130,7 @@ def fetchSubtitles(proxy, token, part, imdbID=None, filename=None, season=None, 
       except:
         subtitleResponse = False
 
-    if subtitleResponse == False and filename and season and episode: # TV
+    if (subtitleResponse == False or not subtitleResponse) and filename and season and episode: # TV
 
       Log('Found nothing via hash, trying search with filename/season/episode: %s, %s, %s' % (filename, season, episode))
       try:
